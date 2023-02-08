@@ -8,7 +8,7 @@ class GithubFlutterIssuesApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = RouterNotifier().router;
+    final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
       title: 'Flutter Issues App',
