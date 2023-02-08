@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "86132765250",
+    "project_id": "flutter-issue-tracking",
+    "storage_bucket": "flutter-issue-tracking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86132765250:android:bc8bbb887e20a77fca33db",
+        "android_client_info": {
+          "package_name": "com.example.flutter_issue_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86132765250-i6ato0q8t48tlfg3u6l5an92cmlvmljp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBasbNY36K76dvCGfeQjgd5v7USWZ59OpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86132765250-i6ato0q8t48tlfg3u6l5an92cmlvmljp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
