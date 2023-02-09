@@ -1,0 +1,51 @@
+name: build_and_distribute
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-android:
+    # Skip running this job if the last commit was created by a Buzz bot.
+    # This is when a new version, changelog and release notes are commited
+    # when running this workflow.
+    if: github.event.commits[0].author.email != 'bot@flutterissuetacker.co'
+    name: Build for Android on ${{ matrix.os }} with Flutter ${{ matrix.flutter }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
+        flutter: ["3.3.10"]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ matrix.flutter }}
+
+      - name: Update version
+        run: |
+          # Set up git.
+          git config --global user.name 'Buzz Bot'
+          git config user.email bot@flutterissuetacker.co
+
+          # Update version.
+          sh bump_version.sh
+          git add pubspec.yaml
+          git commit -m "Bump version to ${{ steps.get_version.outputs.version }}"
+
+      - name: Analyze & Format
+        run: | 
+          flutter analyze
+          flutter format --set-exit-if-changed .
+
+      - name: Build Android App
+        run: flutter build apk --split-per-abi
+
+      - name: Upload APK to Firebase Distruibution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          groups: testers
+          file: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
