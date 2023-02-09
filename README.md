@@ -1,16 +1,13 @@
 # flutter_issue_tracker
 
-A new Flutter project.
+A Flutter app that allows you to see the latest issues for the flutter/flutter repo on GitHub.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+You can run this application if you have Flutter installed.
 
-A few resources to get you started if this is your first Flutter project:
+Alternatively, you can test the app by downloading it via Firebase Distribution. 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+You can request access to it by [emailing @rafaelortizzableh](mailto:rafaelortizzableh@gmail.com)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# UI Showcase
