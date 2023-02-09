@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_issue_tracker/core/widgets/unknown_route_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

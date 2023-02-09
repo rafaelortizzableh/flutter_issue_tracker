@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '86132765250',
     projectId: 'flutter-issue-tracking',
     storageBucket: 'flutter-issue-tracking.appspot.com',
-    iosClientId: '86132765250-oh4065vr6oi2pmkqnvihle7ogp1db770.apps.googleusercontent.com',
+    iosClientId:
+        '86132765250-oh4065vr6oi2pmkqnvihle7ogp1db770.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterIssueTracker',
   );
 }
