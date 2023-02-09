@@ -39,11 +39,6 @@ abstract class CustomTheme {
         selectedItemColor: Palette.appGrey,
         unselectedItemColor: Colors.white,
       ),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Palette.appBlue,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24.0))),
       bottomAppBarColor: Palette.appBlue,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -80,13 +75,6 @@ abstract class CustomTheme {
       ),
       bottomAppBarTheme: const BottomAppBarTheme(color: Palette.appGrey),
       fontFamily: ThemeFonts.montserrat,
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: theme.primaryColor,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24.0),
-        ),
-      ),
       bottomAppBarColor: Palette.appGrey,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: theme.primaryColor,

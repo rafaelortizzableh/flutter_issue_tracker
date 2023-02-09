@@ -1,14 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:convert';
 
 part 'github_issue_remote_entity.freezed.dart';
 part 'github_issue_remote_entity.g.dart';
-
-GithubIssueRemoteEntity githubIssueRemoteEntityFromJson(String str) =>
-    GithubIssueRemoteEntity.fromJson(json.decode(str));
-
-String githubIssueRemoteEntityToJson(GithubIssueRemoteEntity data) =>
-    json.encode(data.toJson());
 
 @freezed
 class GithubIssueRemoteEntity with _$GithubIssueRemoteEntity {

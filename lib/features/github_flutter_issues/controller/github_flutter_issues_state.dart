@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../github_flutter_issues.dart';
@@ -11,5 +11,6 @@ class GitHubFlutterIssuesState with _$GitHubFlutterIssuesState {
     @Default(AsyncValue<List<GithubIssue>>.loading())
         AsyncValue<List<GithubIssue>> issues,
     @Default(1) int lastFetchedPage,
+    @Default(false) bool fetchingIssues,
   }) = _GitHubFlutterIssuesState;
 }

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 import 'github_flutter_issues.dart';
@@ -23,14 +23,15 @@ class GithubFlutterIssuesService {
 
   Future<List<GithubIssueRemoteEntity>> fetchIssues({
     int page = 1,
+    int perPage = 20,
   }) async {
     try {
       final response = await _get(
           endpoint: 'repos/flutter/flutter/issues',
           queryParameters: {
             'page': '$page',
+            'per_page': '$perPage',
           });
-
       final body = response.jsonList();
 
       return body
@@ -59,6 +60,26 @@ class GithubFlutterIssuesService {
     }
   }
 
+  Future<List<GithubCommentRemoteEntity>> fetchComments(
+    String commentsUrl,
+  ) async {
+    try {
+      final response = await _client.get(
+        Uri.parse(commentsUrl),
+        headers: _generateHeaders(null),
+      );
+
+      final body = response.jsonList();
+
+      return body
+          .map((comment) => GithubCommentRemoteEntity.fromJson(comment))
+          .toList();
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
   /// Sends a GET request to GitHub API on the given [endpoint]
   /// with [queryParameters] and authorization using [accessToken].
   Future<http.Response> _get({
@@ -66,22 +87,25 @@ class GithubFlutterIssuesService {
     Map<String, String>? queryParameters,
     String? accessToken,
   }) async {
-    final headers = <String, String>{
-      if (accessToken != null) 'Authorization': 'Bearer $accessToken',
-      'Accept': 'application/vnd.github+json',
-      'Content-Type': 'application/json',
-    };
-
     final response = await _client.get(
       Uri.https(
         _githubApiDomain,
         endpoint,
         queryParameters,
       ),
-      headers: headers,
+      headers: _generateHeaders(accessToken),
     );
 
     return response;
+  }
+
+  Map<String, String> _generateHeaders([String? accessToken]) {
+    final headers = <String, String>{
+      if (accessToken != null) 'Authorization': 'Bearer $accessToken',
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+    };
+    return headers;
   }
 }
 

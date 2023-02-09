@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'theme.dart';
+import '../core.dart';
 
-class ThemeScreen extends ConsumerWidget {
+class ThemeScreen extends HookConsumerWidget {
   const ThemeScreen({
     super.key,
   });
@@ -13,6 +13,10 @@ class ThemeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    useScreenAnalytics(
+      routeName: routeName,
+      analyticsService: ref.watch(analyticsServiceProvider),
+    );
     final currentThemeMode = ref.watch(themeControllerProvider);
 
     return Scaffold(

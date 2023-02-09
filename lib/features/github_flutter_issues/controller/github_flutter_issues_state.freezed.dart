@@ -19,6 +19,7 @@ mixin _$GitHubFlutterIssuesState {
   AsyncValue<List<GithubIssue>> get issues =>
       throw _privateConstructorUsedError;
   int get lastFetchedPage => throw _privateConstructorUsedError;
+  dynamic get fetchingIssues => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GitHubFlutterIssuesStateCopyWith<GitHubFlutterIssuesState> get copyWith =>
@@ -31,7 +32,10 @@ abstract class $GitHubFlutterIssuesStateCopyWith<$Res> {
           $Res Function(GitHubFlutterIssuesState) then) =
       _$GitHubFlutterIssuesStateCopyWithImpl<$Res, GitHubFlutterIssuesState>;
   @useResult
-  $Res call({AsyncValue<List<GithubIssue>> issues, int lastFetchedPage});
+  $Res call(
+      {AsyncValue<List<GithubIssue>> issues,
+      int lastFetchedPage,
+      dynamic fetchingIssues});
 }
 
 /// @nodoc
@@ -50,6 +54,7 @@ class _$GitHubFlutterIssuesStateCopyWithImpl<$Res,
   $Res call({
     Object? issues = null,
     Object? lastFetchedPage = null,
+    Object? fetchingIssues = freezed,
   }) {
     return _then(_value.copyWith(
       issues: null == issues
@@ -60,6 +65,10 @@ class _$GitHubFlutterIssuesStateCopyWithImpl<$Res,
           ? _value.lastFetchedPage
           : lastFetchedPage // ignore: cast_nullable_to_non_nullable
               as int,
+      fetchingIssues: freezed == fetchingIssues
+          ? _value.fetchingIssues
+          : fetchingIssues // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -73,7 +82,10 @@ abstract class _$$_GitHubFlutterIssuesStateCopyWith<$Res>
       __$$_GitHubFlutterIssuesStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AsyncValue<List<GithubIssue>> issues, int lastFetchedPage});
+  $Res call(
+      {AsyncValue<List<GithubIssue>> issues,
+      int lastFetchedPage,
+      dynamic fetchingIssues});
 }
 
 /// @nodoc
@@ -90,6 +102,7 @@ class __$$_GitHubFlutterIssuesStateCopyWithImpl<$Res>
   $Res call({
     Object? issues = null,
     Object? lastFetchedPage = null,
+    Object? fetchingIssues = freezed,
   }) {
     return _then(_$_GitHubFlutterIssuesState(
       issues: null == issues
@@ -100,6 +113,8 @@ class __$$_GitHubFlutterIssuesStateCopyWithImpl<$Res>
           ? _value.lastFetchedPage
           : lastFetchedPage // ignore: cast_nullable_to_non_nullable
               as int,
+      fetchingIssues:
+          freezed == fetchingIssues ? _value.fetchingIssues! : fetchingIssues,
     ));
   }
 }
@@ -109,7 +124,8 @@ class __$$_GitHubFlutterIssuesStateCopyWithImpl<$Res>
 class _$_GitHubFlutterIssuesState implements _GitHubFlutterIssuesState {
   const _$_GitHubFlutterIssuesState(
       {this.issues = const AsyncValue<List<GithubIssue>>.loading(),
-      this.lastFetchedPage = 1});
+      this.lastFetchedPage = 0,
+      this.fetchingIssues = false});
 
   @override
   @JsonKey()
@@ -117,10 +133,13 @@ class _$_GitHubFlutterIssuesState implements _GitHubFlutterIssuesState {
   @override
   @JsonKey()
   final int lastFetchedPage;
+  @override
+  @JsonKey()
+  final dynamic fetchingIssues;
 
   @override
   String toString() {
-    return 'GitHubFlutterIssuesState(issues: $issues, lastFetchedPage: $lastFetchedPage)';
+    return 'GitHubFlutterIssuesState(issues: $issues, lastFetchedPage: $lastFetchedPage, fetchingIssues: $fetchingIssues)';
   }
 
   @override
@@ -130,11 +149,14 @@ class _$_GitHubFlutterIssuesState implements _GitHubFlutterIssuesState {
             other is _$_GitHubFlutterIssuesState &&
             (identical(other.issues, issues) || other.issues == issues) &&
             (identical(other.lastFetchedPage, lastFetchedPage) ||
-                other.lastFetchedPage == lastFetchedPage));
+                other.lastFetchedPage == lastFetchedPage) &&
+            const DeepCollectionEquality()
+                .equals(other.fetchingIssues, fetchingIssues));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, issues, lastFetchedPage);
+  int get hashCode => Object.hash(runtimeType, issues, lastFetchedPage,
+      const DeepCollectionEquality().hash(fetchingIssues));
 
   @JsonKey(ignore: true)
   @override
@@ -147,12 +169,15 @@ class _$_GitHubFlutterIssuesState implements _GitHubFlutterIssuesState {
 abstract class _GitHubFlutterIssuesState implements GitHubFlutterIssuesState {
   const factory _GitHubFlutterIssuesState(
       {final AsyncValue<List<GithubIssue>> issues,
-      final int lastFetchedPage}) = _$_GitHubFlutterIssuesState;
+      final int lastFetchedPage,
+      final dynamic fetchingIssues}) = _$_GitHubFlutterIssuesState;
 
   @override
   AsyncValue<List<GithubIssue>> get issues;
   @override
   int get lastFetchedPage;
+  @override
+  dynamic get fetchingIssues;
   @override
   @JsonKey(ignore: true)
   _$$_GitHubFlutterIssuesStateCopyWith<_$_GitHubFlutterIssuesState>

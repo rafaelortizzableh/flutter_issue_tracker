@@ -1,1 +1,2 @@
-export 'shared_preferences/shared_preferences_service.dart';
+export 'shared_preferences_service.dart';
+export 'analytics.dart';

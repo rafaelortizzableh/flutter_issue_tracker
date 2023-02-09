@@ -37,30 +37,9 @@ class _GithubFlutterIssueTileState extends State<GithubFlutterIssueTile> {
         child: Card(
           child: ListTile(
             style: ListTileStyle.drawer,
-            trailing: AnimatedOpacity(
-              curve: Curves.easeOut,
-              opacity:
-                  widget.issue.hasBeenViewed(widget.viewedIssues) ? 1.0 : 0.0,
-              duration: kThemeAnimationDuration,
-              child: Container(
-                height: 20.0,
-                width: 20.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.lightBlue,
-                  ),
-                  color: Colors.transparent,
-                ),
-                padding: const EdgeInsets.all(1.0),
-                child: const Center(
-                  child: Icon(
-                    Icons.visibility,
-                    size: 14.0,
-                    color: Colors.lightBlue,
-                  ),
-                ),
-              ),
+            trailing: GithubIssueViewedIcon(
+              issue: widget.issue,
+              viewedIssues: widget.viewedIssues,
             ),
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -69,10 +48,7 @@ class _GithubFlutterIssueTileState extends State<GithubFlutterIssueTile> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Hero(
-                      tag: 'issue-${widget.issue.number}',
-                      child: GithubIssueStatusIcon(issue: widget.issue),
-                    ),
+                    GithubIssueStatusIcon(issue: widget.issue),
                   ],
                 ),
               ],
@@ -85,45 +61,7 @@ class _GithubFlutterIssueTileState extends State<GithubFlutterIssueTile> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: Text.rich(
-              TextSpan(
-                text: '#${widget.issue.number}',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.color
-                          ?.withOpacity(0.66),
-                    ),
-                children: [
-                  TextSpan(
-                    text: ' opened by ',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.normal,
-                          color: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.color
-                              ?.withOpacity(0.66),
-                        ),
-                  ),
-                  TextSpan(
-                    text: '${widget.issue.user?.login}',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.color
-                              ?.withOpacity(0.66),
-                        ),
-                  ),
-                ],
-              ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
+            subtitle: GithubIssueSubtitle(issue: widget.issue),
           ),
         ),
       ),
