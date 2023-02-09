@@ -22,7 +22,48 @@ class GithubFlutterIssuesPage extends HookConsumerWidget {
 
     final theme = Theme.of(context);
     final mediaQuery = MediaQuery.of(context);
+
     return Scaffold(
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton.small(
+            heroTag: 'sort_fab',
+            onPressed: () async {
+              final currentSort = ref.read(githubSortProvider);
+              final newSort = await changeIssuesSorting(
+                context,
+                currentSort,
+              );
+              if (newSort != null && newSort != currentSort) {
+                ref.read(githubSortProvider.notifier).changeState(
+                      newSort,
+                    );
+                ref.read(githubPaginatedIssuesControllerProvider).refresh();
+              }
+            },
+            child: const Icon(Icons.sort),
+          ),
+          const SizedBox(height: 8.0),
+          FloatingActionButton.small(
+            heroTag: 'filter_fab',
+            onPressed: () async {
+              final currentFilter = ref.read(githubFilterProvider);
+              final newFilter = await changesIssuesFilter(
+                context,
+                currentFilter,
+              );
+              if (newFilter != null && newFilter != currentFilter) {
+                ref.read(githubFilterProvider.notifier).changeState(
+                      newFilter,
+                    );
+                ref.read(githubPaginatedIssuesControllerProvider).refresh();
+              }
+            },
+            child: const Icon(Icons.filter_list),
+          ),
+        ],
+      ),
       body: NestedScrollView(
           floatHeaderSlivers: true,
           headerSliverBuilder: (context, innerBoxScrolled) => [

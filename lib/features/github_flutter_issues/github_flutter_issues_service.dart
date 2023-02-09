@@ -9,14 +9,17 @@ import 'github_flutter_issues.dart';
 
 /// A Provider of [GithubFlutterIssuesService].
 final githubFlutterIssuesServiceProvider = Provider<GithubFlutterIssuesService>(
-  (ref) => GithubFlutterIssuesService(),
+  (ref) => GithubFlutterIssuesService(ref: ref),
 );
 
 class GithubFlutterIssuesService {
   GithubFlutterIssuesService({
+    required Ref ref,
     http.Client? client,
-  }) : _client = client ?? http.Client();
+  })  : _ref = ref,
+        _client = client ?? http.Client();
 
+  final Ref _ref;
   final http.Client _client;
   // final Link _graphQLHttpLink = HttpLink('https://api.github.com/graphql');
   final String _githubApiDomain = 'api.github.com';
@@ -26,11 +29,15 @@ class GithubFlutterIssuesService {
     int perPage = 20,
   }) async {
     try {
+      final filter = _ref.read(githubFilterProvider);
+      final sort = _ref.read(githubSortProvider);
       final response = await _get(
           endpoint: 'repos/flutter/flutter/issues',
           queryParameters: {
             'page': '$page',
             'per_page': '$perPage',
+            'sort': sort.value,
+            'state': filter.value,
           });
       final body = response.jsonList();
 

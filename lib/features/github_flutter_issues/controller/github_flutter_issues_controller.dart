@@ -10,7 +10,15 @@ final githubPaginatedIssuesControllerProvider =
     Provider.autoDispose<PagingController<int, GithubIssue>>(
   (ref) {
     final controller = PagingController<int, GithubIssue>(firstPageKey: 1);
+
     ref.onDispose(() {
+      controller.removePageRequestListener(
+        (page) => _fetchPage(
+          ref: ref,
+          pageKey: page,
+          controller: controller,
+        ),
+      );
       controller.dispose();
     });
     controller.addPageRequestListener(

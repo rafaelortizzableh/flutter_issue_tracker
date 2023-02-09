@@ -5,3 +5,5 @@ export 'github_issue_status_badge.dart';
 export 'github_issue_subtitle.dart';
 export 'github_issue_viewed_icon.dart';
 export 'github_issue_comment_card.dart';
+export 'github_change_sort_modal_sheet.dart';
+export 'github_change_filters_modal_sheet.dart';
