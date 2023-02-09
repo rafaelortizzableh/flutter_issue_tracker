@@ -12,7 +12,9 @@ You can request access to it by [emailing @rafaelortizzableh](mailto:rafaelortiz
 
 # UI Showcase
 
-![Screenshot_20230209-113250](https://user-images.githubusercontent.com/57945332/217789007-640c5258-2e82-4ec2-a0d8-8c190a867b15.jpg)
+<img src="https://user-images.githubusercontent.com/57945332/217789007-640c5258-2e82-4ec2-a0d8-8c190a867b15.jpg" width="200" />
+
+![Screenshot_20230209-113250]()
 
 ![Screenshot_20230209-113234](https://user-images.githubusercontent.com/57945332/217789098-3ce63908-d096-4485-a578-2531b4617358.jpg)
 
